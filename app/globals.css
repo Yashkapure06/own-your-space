@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-cream: #faf9f6;
+  --color-ink: #111111;
+  --color-oat: #dedbd6;
+  --color-fin: #ff5600;
+  --color-muted: #7b7b78;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply font-mono uppercase text-label text-ink-60;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sharp bg-ink px-5 py-3 text-[15px] font-medium text-cream
+           transition-transform duration-300 ease-out-expo
+           hover:scale-[1.04] active:scale-[0.97]
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sharp border border-ink/15 bg-transparent px-5 py-3 text-[15px] font-medium text-ink
+           transition-all duration-300 ease-out-expo
+           hover:border-ink hover:scale-[1.04] active:scale-[0.97]
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+  }
+
+  .surface-card {
+    @apply rounded-card border border-oat bg-white;
+  }
+
+  .field-input {
+    @apply w-full rounded-sharp border border-oat bg-white px-4 py-3.5 text-[15px] text-ink placeholder:text-tertiary
+           transition-colors duration-200
+           hover:border-ink/40
+           focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/10;
+  }
+
+  .field-label {
+    @apply mb-2 flex items-baseline justify-between text-[13px] font-medium text-ink;
+  }
+
+  .field-error {
+    @apply mt-1.5 flex items-center gap-1.5 text-[12px] font-medium text-r-red animate-fade-up;
+  }
+}
+
+@layer utilities {
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    z-index: 0;
+  }
+
+  /* Animation stagger helpers */
+  .stagger-1 {
+    animation-delay: 60ms;
+  }
+  .stagger-2 {
+    animation-delay: 120ms;
+  }
+  .stagger-3 {
+    animation-delay: 180ms;
+  }
+  .stagger-4 {
+    animation-delay: 240ms;
+  }
+  .stagger-5 {
+    animation-delay: 300ms;
+  }
+  .stagger-6 {
+    animation-delay: 360ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
